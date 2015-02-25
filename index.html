@@ -13,8 +13,10 @@
     jQuery(document).ready(function($) {
         $('body').terminal(function(command, term) {
             if (command == 'play') {
-                alert('play');
-            }
+                $.get("http://127.0.0.1:5000/", function( data, status ) {
+                    alert(data.name);
+                }, dataType = "json"
+            )}
         }, {
             greetings: "Hi! Welcome to my website."
         });

@@ -1,3 +1,4 @@
+from copy import copy
 import logging
 import inspect
 import sys
@@ -13,13 +14,15 @@ class RoutedPage:
         return NotImplementedError
 
     @classmethod
-    def back_page(cls):
-        return None
+    def simple_path(cls):
+        return cls.path()[1:] # remove the beginning slash
 
     @classmethod
     def options_dict(cls):
-        page_list = cls.options() + [cls]
-        return dict(paths=[(x.path(), x.text()) for x in page_list])
+        page_list = cls.options()
+        #app.logger.info(cls)
+        #app.logger.info(page_list)
+        return dict(paths=dict([(x.simple_path(), dict(path=x.path(), text=x.text())) for x in page_list]))
 
     @classmethod
     def options(cls):
@@ -32,11 +35,11 @@ class RoutedPage:
 class HomePage(RoutedPage):
     @classmethod
     def path(cls):
-        return "/home"
+        return '/home'
 
     @classmethod
     def options(cls):
-        return [AboutMe]
+        return [AboutMe, Contact]
 
     @classmethod
     def text(cls):
@@ -45,11 +48,7 @@ class HomePage(RoutedPage):
 class AboutMe(RoutedPage):
     @classmethod
     def path(cls):
-        return "/about_me"
-
-    @classmethod
-    def back_page(cls):
-        return AboutMe
+        return '/about_me'
 
     @classmethod
     def options(cls):
@@ -59,26 +58,18 @@ class AboutMe(RoutedPage):
     def text(cls):
         return 'This page is about me.'
 
-@app.route("/")
-@crossdomain(origin='*')
-def main_page():
-    app.logger.info('home stuff')
-    test_dict = dict(paths=dict(foo='/foo', bar="/bar"))
-    return jsonify(**test_dict)
+class Contact(RoutedPage):
+    @classmethod
+    def path(cls):
+        return '/contact'
 
-@app.route("/foo")
-@crossdomain(origin='*')
-def foo():
-    test_dict = dict(paths=dict(main="/", bar="/bar"))
-    return jsonify(**test_dict)
+    @classmethod
+    def options(cls):
+        return [HomePage]
 
-@app.route("/bar")
-@crossdomain(origin='*')
-def bar():
-    test_dict = dict(paths=dict(main="/", foo="/foo"))
-    return jsonify(**test_dict)
-
-app.route("/test")(lambda: jsonify(dict(a=1)))
+    @classmethod
+    def text(cls):
+        return 'How to contact me.'
 
 # Logging
 app.logger.addHandler(logging.StreamHandler())
@@ -87,8 +78,9 @@ app.logger.setLevel(logging.INFO)
 # Auto add paths things
 clsmembers = inspect.getmembers(sys.modules[__name__],
     lambda x: inspect.isclass(x) and issubclass(x, RoutedPage) and x is not RoutedPage)
+
 for name, member in clsmembers:
     app.add_url_rule(member.path(), name.lower(), lambda: jsonify(member.options_dict()))
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run()

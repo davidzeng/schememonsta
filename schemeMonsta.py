@@ -79,8 +79,13 @@ app.logger.setLevel(logging.INFO)
 clsmembers = inspect.getmembers(sys.modules[__name__],
     lambda x: inspect.isclass(x) and issubclass(x, RoutedPage) and x is not RoutedPage)
 
+# Read this on why I did this:
+# https://docs.python.org/3/faq/programming.html#why-do-lambdas-defined-in-a-loop-with-different-values-all-return-the-same-result
+view_maker = lambda name: (lambda: jsonify(name))
+
 for name, member in clsmembers:
-    app.add_url_rule(member.path(), name.lower(), lambda: jsonify(member.options_dict()))
+    app.add_url_rule(member.path(), endpoint=name.lower(),
+                     view_func=crossdomain('*')(view_maker(member.options_dict())))
 
 if __name__ == '__main__':
     app.run()

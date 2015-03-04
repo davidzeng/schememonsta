@@ -20,17 +20,27 @@ class RoutedPage:
     @classmethod
     def options_dict(cls):
         page_list = cls.options()
-        #app.logger.info(cls)
-        #app.logger.info(page_list)
-        return dict(paths=dict([(x.simple_path(), dict(path=x.path(), text=x.text())) for x in page_list]))
+        return dict(paths=dict([(x.simple_path(), dict(path=x.path(), text=x.description())) for x in page_list]),
+                    page_text=cls.page_text(), page_json=cls.page_json())
 
     @classmethod
     def options(cls):
         return []
 
     @classmethod
-    def text(cls):
+    def description(cls):
+        # what's shown to the users in the options page.
         return 'Go back to the top.'
+
+    @classmethod
+    def page_text(cls):
+        # what's displayed as text on the page.
+        return ''
+
+    @classmethod
+    def page_json(cls):
+        # dictionary that'll get pretty printed into JSON
+        return dict()
 
 class HomePage(RoutedPage):
     @classmethod
@@ -42,7 +52,7 @@ class HomePage(RoutedPage):
         return [AboutMe, Contact]
 
     @classmethod
-    def text(cls):
+    def description(cls):
         return 'This is the home page.'
 
 class AboutMe(RoutedPage):
@@ -55,8 +65,14 @@ class AboutMe(RoutedPage):
         return [HomePage]
 
     @classmethod
-    def text(cls):
+    def description(cls):
         return 'This page is about me.'
+
+    @classmethod
+    def page_text(cls):
+        line1 = "My name is David Zeng and I am a software engineer currently working at Clinkle."
+        line2 = "I specialize in working on the backend, designing API's and working on general architecture."
+        return '<br/>'.join([line1, line2])
 
 class Contact(RoutedPage):
     @classmethod
@@ -68,8 +84,18 @@ class Contact(RoutedPage):
         return [HomePage]
 
     @classmethod
-    def text(cls):
+    def description(cls):
         return 'How to contact me.'
+
+    @classmethod
+    def page_text(cls):
+        return "Here's a list of the ways you can contact me:"
+
+    @classmethod
+    def page_json(cls):
+        return dict(email='david.tao.zeng@gmail.com',
+                    linkedin='https://www.linkedin.com/pub/david-zeng/9/a22/14a',
+                    github='https://github.com/davidzeng')
 
 # Logging
 app.logger.addHandler(logging.StreamHandler())

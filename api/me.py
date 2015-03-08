@@ -8,11 +8,11 @@ class AboutMe(RoutedPage):
 
     @classmethod
     def options(cls):
-        return [home.HomePage]
+        return [home.HomePage, Why]
 
     @classmethod
     def description(cls):
-        return 'This page is about me.'
+        return 'Learn more about me and my website.'
 
     @classmethod
     def page_text(cls):
@@ -20,26 +20,24 @@ class AboutMe(RoutedPage):
         line2 = "I specialize in working on the backend, designing API's and working on general architecture."
         return '<br/>'.join([line1, line2])
 
-
-class Contact(RoutedPage):
+class Why(RoutedPage):
     @classmethod
     def path(cls):
-        return '/contact'
+        return '/why'
 
     @classmethod
     def options(cls):
-        return [home.HomePage]
+        return [home.HomePage, AboutMe]
 
     @classmethod
     def description(cls):
-        return 'How to contact me.'
+        return 'Why did you build your site like this?'
 
     @classmethod
     def page_text(cls):
-        return "Here's a list of the ways you can contact me:"
-
-    @classmethod
-    def page_json(cls):
-        return dict(email='david.tao.zeng@gmail.com',
-                    linkedin='https://www.linkedin.com/pub/david-zeng/9/a22/14a',
-                    github='https://github.com/davidzeng')
+        line1 = "As someone who mostly focuses on the backend, I wanted a website that reflected my interests in engineering."
+        line2 = "I've always wanted to build a website but didn't want to focus on designing layout."
+        line3 = "One day it came to mind that a terminal interface with a simple API backend is both minimalistic"
+        line4 = "and demonstrates my preference in design. While designing this, I got to play around with Flask, Heroku and"
+        line5 = "just learned more in general."
+        return '<br/>'.join([line1, line2, line3, line4, line5])

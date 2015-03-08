@@ -1,5 +1,5 @@
 from base_page import RoutedPage
-import me, contact
+import me, contact, experience
 
 class HomePage(RoutedPage):
     @classmethod
@@ -8,7 +8,7 @@ class HomePage(RoutedPage):
 
     @classmethod
     def options(cls):
-        return [me.AboutMe, contact.Contact]
+        return [me.AboutMe, contact.Contact, experience.Experience]
 
     @classmethod
     def description(cls):

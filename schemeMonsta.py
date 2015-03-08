@@ -20,8 +20,6 @@ clsmembers = set([cls for mod in api_modules
                     for cls in inspect.getmembers(mod, 
                         lambda x: inspect.isclass(x) and issubclass(x, RoutedPage) and x is not RoutedPage)])
 
-app.logger.info(clsmembers)
-
 # Read this on why I did this:
 # https://docs.python.org/3/faq/programming.html#why-do-lambdas-defined-in-a-loop-with-different-values-all-return-the-same-result
 view_maker = lambda name: (lambda: jsonify(name))

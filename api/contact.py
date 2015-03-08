@@ -21,5 +21,5 @@ class Contact(RoutedPage):
     @classmethod
     def page_json(cls):
         return dict(email='david.tao.zeng@gmail.com',
-                    linkedin='<a href="https://www.linkedin.com/pub/david-zeng/9/a22/14a">Linkedin</a>',
-                    github='<a href="https://github.com/davidzeng">Github</a>')
+                    linkedin="<a href='http://www.linkedin.com/pub/david-zeng/9/a22/14a' target='_blank'>Linkedin</a>",
+                    github="<a href='http://github.com/davidzeng' target='_blank'>Github</a>")

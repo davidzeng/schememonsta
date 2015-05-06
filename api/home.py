@@ -12,7 +12,7 @@ class HomePage(RoutedPage):
 
     @classmethod
     def description(cls):
-        return 'This is the home page.'
+        return 'Go back to home base.'
 
     @classmethod
     def page_text(cls):

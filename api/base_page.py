@@ -22,7 +22,7 @@ class RoutedPage:
     @classmethod
     def description(cls):
         # what's shown to the users in the options page.
-        return 'Go back to the top.'
+        return 'Go back to the top'
 
     @classmethod
     def page_heading(cls):

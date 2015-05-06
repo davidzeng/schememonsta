@@ -12,7 +12,7 @@ class Credits(RoutedPage):
 
     @classmethod
     def description(cls):
-        return 'People that helped to make this!'
+        return 'People that helped to make this.'
 
     @classmethod
     def page_text(cls):

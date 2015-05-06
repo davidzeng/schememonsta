@@ -66,4 +66,4 @@ class MyHobbies(RoutedPage):
     def page_json(cls):
         return dict(Running="Running for 2 years. Hope to do the Toyko marathon in 2016 if I'm not injured.",
             Badminton="Playing for 8 years total in men's doubles (C Level) and mixed (Looking for Partner!).",
-            Games="Hearthstone, Final Fantasy, The Last of Us, Catherine, To The Moon are recent favorites.")
+            Games="Hearthstone, Final Fantasy, The Last of Us, Catherine and To The Moon are recent favorites.")

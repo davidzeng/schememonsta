@@ -32,7 +32,7 @@ class PocketGems(RoutedPage):
 
     @classmethod
     def description(cls):
-        return 'The best mobile gaming company! - September 2011 - September 2014'
+        return 'The best mobile gaming company! - September 2011 - September 2014.'
 
     @classmethod
     def page_text(cls):
@@ -68,11 +68,11 @@ class Clinkle(RoutedPage):
 
     @classmethod
     def description(cls):
-        return 'Mobile payments - September 2014 - Present'
+        return 'Mobile payments - September 2014 - Present.'
 
     @classmethod
     def page_text(cls):
-        return "I worked in a team of 4 to support the payments platform and improve user engagement with the product."
+        return "I worked in a team of 4 to support the payments platform and improve user engagement with the product"
 
     @classmethod
     def page_json(cls):

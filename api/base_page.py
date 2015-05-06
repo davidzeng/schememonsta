@@ -1,3 +1,5 @@
+import re
+
 class RoutedPage:
     @classmethod
     def path(cls):
@@ -11,7 +13,7 @@ class RoutedPage:
     def options_dict(cls):
         page_list = cls.options()
         return dict(paths=dict([(x.simple_path(), dict(path=x.path(), text=x.description())) for x in page_list]),
-                    page_text=cls.page_text(), page_json=cls.page_json())
+                    page_text=cls.page_text(), page_json=cls.page_json(), page_heading=cls.page_heading())
 
     @classmethod
     def options(cls):
@@ -21,6 +23,10 @@ class RoutedPage:
     def description(cls):
         # what's shown to the users in the options page.
         return 'Go back to the top.'
+
+    @classmethod
+    def page_heading(cls):
+        return re.sub('(?<=\w)([A-Z])', r' \1', cls.__name__)
 
     @classmethod
     def page_text(cls):

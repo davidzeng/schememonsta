@@ -6,7 +6,7 @@ import sys
 from crossdomain import crossdomain
 from flask import Flask, jsonify
 
-from api import contact, experience, home, me
+from api import contact, credits, experience, home, me
 from api.base_page import RoutedPage
 
 app = Flask(__name__)
@@ -15,7 +15,7 @@ app = Flask(__name__)
 app.logger.addHandler(logging.StreamHandler())
 app.logger.setLevel(logging.INFO)
 
-api_modules = [contact, experience, home, me]
+api_modules = [contact, credits, experience, home, me]
 clsmembers = set([cls for mod in api_modules 
                     for cls in inspect.getmembers(mod, 
                         lambda x: inspect.isclass(x) and issubclass(x, RoutedPage) and x is not RoutedPage)])

@@ -21,7 +21,7 @@ class AboutMe(RoutedPage):
         line2 = "I specialize in working on the backend, designing API's and working on general architecture."
         line3 = "At work, I enjoy building tools and platforms that people can interact with."
         line4 = "Data driven decision making in real world applications also appeals to my (former) analyst nature."
-        return '<br/>'.join([line1, br, line2, line3, line4])
+        return '<br/><br/>'.join([line1, br, line2, line3, line4])
 
 class WhyIMadeThisWebsite(RoutedPage):
     @classmethod
@@ -43,7 +43,7 @@ class WhyIMadeThisWebsite(RoutedPage):
         br = ""
         line3 = "One day it came to mind that a terminal interface with a simple API backend is both minimalistic"
         line4 = "and demonstrates my preference in design. While designing this, I got to play around with Flask and Heroku."
-        return '<br/>'.join([line1, line2, br, line3, line4])
+        return '<br/><br/>'.join([line1, line2, br, line3, line4])
 
 class MyHobbies(RoutedPage):
     @classmethod
@@ -60,7 +60,7 @@ class MyHobbies(RoutedPage):
 
     @classmethod
     def page_text(cls):
-        return "When I'm not playing sports, I prefer to be in as inactive as possible."
+        return "When I'm not exercising, I prefer to be as inactive as possible."
 
     @classmethod
     def page_json(cls):

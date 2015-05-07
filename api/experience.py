@@ -18,7 +18,7 @@ class Experience(RoutedPage):
     def page_text(cls):
         line1 = "I've worked at various places over the years. Keep going to learn more about my jobs."
         line2 = "Or just <a href='dz_resume.pdf' target='__blank'>download my resume</a>."
-        return "<br/>".join([line1, line2])
+        return "<br/><br/>".join([line1, line2])
 
 
 class PocketGems(RoutedPage):
